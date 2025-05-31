@@ -1,0 +1,100 @@
+
+<!-- order.html - Página de compra -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CherryBooz - Pedido</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: linear-gradient(to bottom, #a9314f, #fcbb6d);
+      color: #fff;
+      animation: fadeIn 0.8s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: rgba(255, 243, 224, 0.1);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #fff3e0;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+    }
+
+    button {
+      background: #ff5a36;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      width: 100%;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #e34727;
+    }
+
+    #confirmation {
+      text-align: center;
+      color: #ffe600;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Formulario de Pedido</h2>
+    <form id="orderForm">
+      <input type="text" placeholder="Nombre completo" required>
+      <input type="tel" placeholder="Teléfono o WhatsApp" required>
+      <input type="text" placeholder="Dirección de entrega" required>
+      <select required>
+        <option disabled selected>Tipo de alcohol</option>
+        <option>Ron oscuro</option>
+        <option>Vodka</option>
+        <option>Whisky</option>
+      </select>
+      <input type="number" placeholder="Cantidad" min="1" required>
+      <select required>
+        <option disabled selected>Modo de entrega</option>
+        <option>Recoger en tienda</option>
+        <option>Delivery</option>
+      </select>
+      <button type="submit">Realizar pedido</button>
+    </form>
+    <p id="confirmation"></p>
+  </div>
+
+  <script>
+    document.getElementById("orderForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("confirmation").textContent = "¡Gracias por tu pedido! Nos pondremos en contacto pronto.";
+    });
+  </script>
+</body>
+</html>
