@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flan Flameado</title>
+  <style>
+    body { font-family: Arial; padding: 20px; background: #fff6f6; color: #333; }
+    .container { max-width: 600px; margin: auto; }
+    h1 { color: #a10000; }
+    img { width: 100%; border-radius: 8px; }
+    button { background: #a10000; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+    input, select { width: 100%; padding: 10px; margin: 5px 0; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Flan Flameado 🍮🔥</h1>
+    <img src="https://via.placeholder.com/600x400?text=Flan+Cherry+con+Alcohol" alt="Flan Gourmet">
+    <p>Un flan artesanal con cobertura de cereza infusionada en licor. El balance perfecto entre dulzura y carácter.</p>
+
+    <h3>Haz tu pedido</h3>
+    <form id="orderForm">
+      <input type="text" placeholder="Nombre completo" required>
+      <input type="tel" placeholder="Teléfono o WhatsApp" required>
+      <input type="text" placeholder="Dirección de entrega" required>
+      <select required>
+        <option disabled selected>Tipo de alcohol</option>
+        <option>Ron oscuro</option>
+        <option>Vodka</option>
+        <option>Whisky</option>
+      </select>
+      <input type="number" placeholder="Cantidad" min="1" required>
+      <select required>
+        <option disabled selected>Modo de entrega</option>
+        <option>Recoger en tienda</option>
+        <option>Delivery</option>
+      </select>
+      <button type="submit">Realizar pedido</button>
+    </form>
+
+    <p id="confirmation" style="color: green; font-weight: bold;"></p>
+  </div>
+
+  <script>
+    document.getElementById("orderForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      document.getElementById("confirmation").textContent = "¡Gracias por tu pedido! Nos pondremos en contacto pronto.";
+    });
+  </script>
+</body>
+</html>
