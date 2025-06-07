@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CherryBooz - Ordena tu porción</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #ff6a00, #ee0979);
+      color: white;
+      animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+    header img {
+      width: 100px;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+    .form-container {
+      padding: 150px 20px 60px;
+      max-width: 600px;
+      margin: auto;
+    }
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      text-align: left;
+      margin-top: 15px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: none;
+    }
+    button {
+      margin-top: 20px;
+      background: white;
+      color: #ff3c00;
+      padding: 12px 25px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://i.imgur.com/kMb0dVh.png" alt="CherryBooz Logo">
+  </header>
+  <div class="form-container">
+    <h2>Ordena tu CherryBooz</h2>
+    <form action="pago.html" method="get">
+      <label>Nombre completo:
+        <input type="text" required />
+      </label>
+      <label>Dirección de entrega:
+        <input type="text" required />
+      </label>
+      <label>Cantidad de porciones:
+        <input type="number" min="1" required />
+      </label>
+      <label>Licor preferido:
+        <select required>
+          <option value="ron">Ron</option>
+          <option value="vodka">Vodka</option>
+          <option value="whisky">Whisky</option>
+          <option value="baileys">Baileys</option>
+        </select>
+      </label>
+      <label>Mensaje para entrega:
+        <textarea rows="3"></textarea>
+      </label>
+      <label>Método de pago:
+        <select required>
+          <option>Pago contra entrega</option>
+          <option>Tarjeta</option>
+        </select>
+      </label>
+      <p><strong>Precio: RD$200 por porción</strong></p>
+      <button type="submit">Proceder al pago</button>
+    </form>
+  </div>
+</body>
+</html>
