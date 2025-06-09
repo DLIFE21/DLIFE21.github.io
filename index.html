@@ -1,26 +1,94 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CherryBooz - Presentación</title>
-  <style>
-    body { background-color: #281a1c; color: #ffb347; font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-    header img { width: 120px; position: absolute; top: 10px; left: 10px; }
-    .contenido { max-width: 600px; margin: auto; text-align: center; padding-top: 150px; }
-    .contenido img { width: 100%; border-radius: 15px; box-shadow: 0 0 15px #ff6f61; }
-    .descripcion { margin-top: 20px; font-size: 18px; line-height: 1.6; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CherryBooz - Selección de Flan</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#f9f9f9; margin:0; padding:20px; }
+  h1 { color: #a52a2a; text-align:center; }
+  .flan-container { max-width: 600px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow:0 2px 8px rgba(0,0,0,0.1); }
+  .licores { display: flex; justify-content: space-around; margin: 20px 0; }
+  .licor-card { cursor:pointer; border: 2px solid transparent; border-radius: 8px; padding: 10px; text-align:center; transition: border-color 0.3s ease; }
+  .licor-card img { width: 80px; height: 80px; object-fit: contain; }
+  .licor-card.selected { border-color: #a52a2a; }
+  label { display:block; margin: 10px 0 5px; }
+  input[type=number] { width: 100%; padding: 8px; font-size: 1em; border-radius:4px; border:1px solid #ccc; }
+  button { background: #a52a2a; color: white; border:none; padding: 12px 20px; border-radius:4px; cursor:pointer; font-size: 1.1em; width: 100%; margin-top: 20px; }
+  button:hover { background: #8b2020; }
+  .flan-preview { text-align:center; margin-top: 15px; }
+  .flan-preview img { max-width: 250px; border-radius: 12px; }
+</style>
 </head>
 <body>
-  <header>
-    <img src="https://i.imgur.com/kMb0dVh.png" alt="Logo CherryBooz" />
-  </header>
-  <div class="contenido">
-    <img src="https://i.imgur.com/YUVsCkJ.png" alt="Flan CherryBooz" />
-    <div class="descripcion">
-      Descubre el sabor irreverente de CherryBooz. Un flan artesanal con cobertura de cherry y un toque sutil de alcohol que eleva tu paladar a otra dimensión.
+
+<div class="flan-container">
+  <h1>CherryBooz - El flan con un toque de alcohol</h1>
+
+  <p>Elige tu licor favorito para infusionar nuestro delicioso flan de cherry.</p>
+
+  <div class="licores">
+    <div class="licor-card" data-licor="ron">
+      <img src="https://i.imgur.com/ron.png" alt="Ron" />
+      <p>Ron</p>
+    </div>
+    <div class="licor-card" data-licor="whisky">
+      <img src="https://i.imgur.com/whisky.png" alt="Whisky" />
+      <p>Whisky</p>
+    </div>
+    <div class="licor-card" data-licor="baileys">
+      <img src="https://i.imgur.com/baileys.png" alt="Baileys" />
+      <p>Baileys</p>
     </div>
   </div>
+
+  <label for="cantidad">Cantidad:</label>
+  <input type="number" id="cantidad" min="1" value="1" />
+
+  <div class="flan-preview">
+    <img id="flan-img" src="https://i.imgur.com/flan_default.png" alt="Flan Preview" />
+  </div>
+
+  <button id="btn-siguiente">Continuar al Pago</button>
+</div>
+
+<script>
+  const licorCards = document.querySelectorAll('.licor-card');
+  let selectedLicor = null;
+
+  licorCards.forEach(card => {
+    card.addEventListener('click', () => {
+      licorCards.forEach(c => c.classList.remove('selected'));
+      card.classList.add('selected');
+      selectedLicor = card.getAttribute('data-licor');
+      updateFlanImage(selectedLicor);
+    });
+  });
+
+  function updateFlanImage(licor) {
+    const img = document.getElementById('flan-img');
+    if (licor === 'ron') img.src = 'https://i.imgur.com/flan_ron.png';
+    else if (licor === 'whisky') img.src = 'https://i.imgur.com/flan_whisky.png';
+    else if (licor === 'baileys') img.src = 'https://i.imgur.com/flan_baileys.png';
+    else img.src = 'https://i.imgur.com/flan_default.png';
+  }
+
+  document.getElementById('btn-siguiente').addEventListener('click', () => {
+    const cantidad = parseInt(document.getElementById('cantidad').value, 10);
+    if (!selectedLicor) {
+      alert('Por favor, selecciona un licor.');
+      return;
+    }
+    if (isNaN(cantidad) || cantidad < 1) {
+      alert('Cantidad inválida.');
+      return;
+    }
+    // Guardar datos en localStorage para la segunda página
+    localStorage.setItem('licorSeleccionado', selectedLicor);
+    localStorage.setItem('cantidadSeleccionada', cantidad);
+    window.location.href = 'pago.html';
+  });
+</script>
+
 </body>
 </html>
