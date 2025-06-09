@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CherryBooz - Compra</title>
+  <style>
+    body { background-color: #281a1c; color: #ffb347; font-family: Arial, sans-serif; padding: 20px; }
+    header img { width: 120px; position: absolute; top: 10px; left: 10px; }
+    form { max-width: 600px; margin: auto; background: #3a2426; padding: 20px; border-radius: 12px; box-shadow: 0 0 15px #ff6f61; }
+    label { display: block; margin-top: 15px; font-weight: bold; }
+    input, select, textarea { width: 100%; padding: 10px; margin-top: 5px; border: none; border-radius: 5px; }
+    .opciones img { width: 100px; border: 2px solid transparent; border-radius: 10px; margin: 10px; cursor: pointer; }
+    .resumen { margin-top: 20px; font-size: 16px; }
+    .boton { margin-top: 20px; padding: 12px 20px; background-color: #ff6f61; border: none; border-radius: 10px; color: white; font-size: 16px; cursor: pointer; }
+    .boton:hover { background-color: #e45c4f; }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://i.imgur.com/kMb0dVh.png" alt="Logo CherryBooz" />
+  </header>
+  <form id="formulario-compra">
+    <label>Nombre completo</label>
+    <input type="text" required pattern="[A-Za-z ]+" />
+
+    <label>Dirección</label>
+    <input type="text" required />
+
+    <label>Cantidad (1-100)</label>
+    <input type="number" min="1" max="100" required />
+
+    <label>Tipo de pedido</label>
+    <div class="opciones">
+      <img src="https://i.imgur.com/YUVsCkJ.png" alt="1 porción" onclick="seleccionar('1 porción')" />
+      <img src="https://i.imgur.com/YUVsCkJ.png" alt="3 porciones" onclick="seleccionar('3 porciones')" />
+      <img src="https://i.imgur.com/YUVsCkJ.png" alt="Flan completo" onclick="seleccionar('Flan completo')" />
+    </div>
+
+    <label>Mensaje adicional</label>
+    <textarea></textarea>
+
+    <label>Método de pago</label>
+    <select id="pago" onchange="mostrarPago(this.value)">
+      <option value="contra">Pago contra entrega</option>
+      <option value="tarjeta">Pago con tarjeta</option>
+    </select>
+
+    <div id="tarjeta-info" style="display:none;">
+      <label>Número de tarjeta</label>
+      <input type="text" pattern="\d{16}" />
+
+      <label>Fecha de vencimiento</label>
+      <input type="text" placeholder="MM/AA" />
+
+      <label>CVV</label>
+      <input type="text" pattern="\d{3}" />
+    </div>
+
+    <div class="resumen">
+      Total: <span id="total">RD$0.00</span>
+    </div>
+
+    <button type="submit" class="boton">Enviar pedido</button>
+  </form>
+
+  <script>
+    function mostrarPago(tipo) {
+      document.getElementById('tarjeta-info').style.display = (tipo === 'tarjeta') ? 'block' : 'none';
+    }
+
+    function seleccionar(tipo) {
+      alert('Seleccionaste: ' + tipo);
+    }
+
+    document.getElementById('formulario-compra').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('¡Gracias por tu compra!');
+    });
+  </script>
+</body>
+</html>
