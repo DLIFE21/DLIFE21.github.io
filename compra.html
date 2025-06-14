@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CherryBooz - Compra</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="https://i.imgur.com/kMb0dVh.png" alt="Logo CherryBooz" class="logo">
+  </header>
+  <main class="formulario-compra">
+    <h2>Formulario de Compra</h2>
+    <form id="pedidoForm">
+      <label>Nombre completo:
+        <input type="text" name="nombre" required pattern="[A-Za-z ]+" />
+      </label>
+      <label>Dirección:
+        <input type="text" name="direccion" required />
+      </label>
+      <label>Cantidad de porciones:
+        <input type="number" name="cantidad" min="1" max="100" required />
+      </label>
+      <p>Precio por porción: <strong>RD$450</strong></p>
+      <p>Total a pagar: <strong id="total">RD$0</strong></p>
+      <button type="submit">Finalizar Pedido</button>
+    </form>
+    <div id="confirmacion" class="confirmacion oculto">
+      <p>¡Gracias por tu compra! 🥳</p>
+    </div>
+  </main>
+  <script>
+    const form = document.getElementById("pedidoForm");
+    const total = document.getElementById("total");
+    const confirmacion = document.getElementById("confirmacion");
+
+    form.cantidad.addEventListener("input", () => {
+      const cantidad = parseInt(form.cantidad.value) || 0;
+      total.innerText = "RD$" + (cantidad * 450);
+    });
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      form.classList.add("oculto");
+      confirmacion.classList.remove("oculto");
+    });
+  </script>
+</body>
+</html>

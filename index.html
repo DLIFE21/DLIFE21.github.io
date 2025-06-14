@@ -1,0 +1,28 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CherryBooz - Presentación</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="https://i.imgur.com/kMb0dVh.png" alt="Logo CherryBooz" class="logo">
+  </header>
+  <main class="hero">
+    <div class="presentation">
+      <img src="https://i.imgur.com/YUVsCkJ.png" alt="Flan CherryBooz" class="flan-image" />
+      <h1>CherryBooz</h1>
+      <p>Un flan con personalidad. Sabor flameado que marca diferencia.</p>
+      <p class="contador">¡Ya llevamos <span id="contador">0</span> pedidos!</p>
+      <a href="compra.html" class="boton-comprar">Comprar Ahora</a>
+    </div>
+  </main>
+  <script>
+    let contador = Math.floor(Math.random() * 100) + 1;
+    document.getElementById("contador").innerText = contador;
+  </script>
+</body>
+</html>
