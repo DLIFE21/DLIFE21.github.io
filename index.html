@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CherryBooz - Compra</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <img src="https://i.imgur.com/kMb0dVh.png" alt="Logo CherryBooz" class="logo" />
+  </header>
+
+  <main>
+    <section class="flan-preview">
+      <img id="flanImage" src="https://i.imgur.com/YUVsCkJ.png" alt="Vista previa del flan" />
+    </section>
+
+    <form id="orderForm">
+      <label>Nombre completo:
+        <input type="text" name="nombre" pattern="[A-Za-z ]+" required />
+      </label>
+
+      <label>Dirección de entrega:
+        <input type="text" name="direccion" required />
+      </label>
+
+      <label>Cantidad (1-100):
+        <input type="number" name="cantidad" min="1" max="100" required />
+      </label>
+
+      <label>Selección:
+        <div class="options">
+          <label><input type="radio" name="opcion" value="1 porción" checked />1 porción</label>
+          <label><input type="radio" name="opcion" value="3 porciones" />3 porciones</label>
+          <label><input type="radio" name="opcion" value="Flan completo" />Flan completo</label>
+        </div>
+      </label>
+
+      <label>Mensaje adicional:
+        <textarea name="mensaje"></textarea>
+      </label>
+
+      <label>Método de pago:
+        <select id="metodoPago" name="metodoPago" required>
+          <option value="tarjeta">Tarjeta</option>
+          <option value="contraentrega">Contra entrega</option>
+        </select>
+      </label>
+
+      <div id="tarjetaCampos" class="tarjeta-info hidden">
+        <label>Número de tarjeta:
+          <input type="text" pattern="\d{16}" />
+        </label>
+        <label>Fecha vencimiento:
+          <input type="text" placeholder="MM/AA" pattern="\d{2}/\d{2}" />
+        </label>
+        <label>CVV:
+          <input type="text" pattern="\d{3}" />
+        </label>
+      </div>
+
+      <div id="resumen" class="resumen">
+        Total: <span id="total">RD$0</span>
+      </div>
+
+      <button type="submit" id="comprarBtn">Finalizar Pedido</button>
+    </form>
+  </main>
+
+  <div id="modalGracias" class="modal hidden">
+    <p>¡Gracias por tu compra! 🎉</p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
