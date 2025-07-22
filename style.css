@@ -1,0 +1,37 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8f6;
+    margin: 0;
+    padding: 0;
+    color: #3a1c1c;
+}
+header {
+    background-color: #ff003c;
+    color: white;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+.presentation {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background-color: #ffe3e3;
+}
+.presentation img {
+    max-width: 300px;
+    margin-right: 2rem;
+}
+.buy {
+    background-color: #fff0f0;
+    padding: 2rem;
+    text-align: center;
+}
+footer {
+    background-color: #3a1c1c;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}
