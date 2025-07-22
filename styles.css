@@ -1,0 +1,39 @@
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #1a1a1a;
+    color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+header {
+    background-color: #8e0038;
+    padding: 20px;
+    text-align: center;
+}
+.presentacion {
+    background-color: #2a2a2a;
+    padding: 20px;
+    text-align: center;
+}
+.compra {
+    background-color: #3a3a3a;
+    padding: 20px;
+}
+footer {
+    background-color: #8e0038;
+    text-align: center;
+    padding: 10px;
+}
+input, select, button {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 100%;
+}
+button {
+    background-color: #c7004c;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
