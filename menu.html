@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CherryBooz - Menú</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cherry Boss - Menú</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="menu.html">Menú</a>
-        <a href="pago.html">Pago</a>
-        <a href="sobre.html">Sobre Nosotros</a>
-    </nav>
-    <h1>Menú</h1>
-    <div class="menu-item">
-        <img src="https://i.imgur.com/RQ93wK9.jpeg" alt="Flan" class="menu-img">
-        <h2>Flan Especial</h2>
-        <p>Precio: 400 pesos</p>
-        <a href="pago.html" class="btn">Comprar</a>
-    </div>
-    <footer>
-        Dirección: Av. Ficticia #123, Ciudad Ejemplo
-    </footer>
+<body class="menu-page">
+<nav class="topnav">
+  <div class="nav-left"><img class="logo" src="https://i.imgur.com/xdIfKqJ.png" alt="Cherry Boss logo"></div>
+  <div class="nav-right">
+    <a href="index.html">Inicio</a>
+    <a href="menu.html">Menú</a>
+    <a href="pago.html">Pago</a>
+    <a href="sobre.html">Sobre Nosotros</a>
+  </div>
+</nav>
+
+<main class="section">
+  <h1 class="section-title">Menú</h1>
+
+  <div class="cards">
+    <article class="card unlocked">
+      <img src="https://i.imgur.com/RQ93wK9.jpeg" alt="Cherry Boss flan" class="card-img">
+      <h2>Cherry Boss - Original</h2>
+      <p class="desc">Porción individual con cobertura de cherry infusionada en ron blanco.</p>
+      <p class="price">RD$400</p>
+      <a class="btn" href="pago.html">Ordenar</a>
+    </article>
+
+    <article class="card locked">
+      <div class="locked-overlay">Próximamente</div>
+      <img src="https://i.imgur.com/PKi3twT.png" alt="Próximamente" class="card-img">
+      <h3>Cherry Boss - Gold</h3>
+      <p class="desc">Edición limitada — próximamente</p>
+    </article>
+
+    <article class="card locked">
+      <div class="locked-overlay">Próximamente</div>
+      <img src="https://i.imgur.com/N1ocLHY.png" alt="Próximamente" class="card-img">
+      <h3>Cherry Boss - Baileys</h3>
+      <p class="desc">Versión con crema — próximamente</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div>Cherry Boss — Fábrica / Oficina</div>
+  <div>Dirección: Calle Flan 123, Parque Industrial, Santo Domingo, RD</div>
+</footer>
+
 </body>
 </html>

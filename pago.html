@@ -1,36 +1,117 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CherryBooz - Pago</title>
-    <link rel="stylesheet" href="styles.css">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Cherry Boss - Pago</title>
+<link rel="stylesheet" href="styles.css" />
 </head>
-<body>
-    <nav>
-        <a href="index.html">Inicio</a>
-        <a href="menu.html">Menú</a>
-        <a href="pago.html">Pago</a>
-        <a href="sobre.html">Sobre Nosotros</a>
-    </nav>
-    <h1>Método de Pago</h1>
-    <form>
-        <label><input type="radio" name="pago" value="tarjeta"> Tarjeta</label>
-        <label><input type="radio" name="pago" value="transferencia"> Transferencia</label>
-        <label><input type="radio" name="pago" value="contra"> Contra Entrega</label>
-        <div class="pago-tarjeta">
-            <input type="text" placeholder="Número de Tarjeta">
-            <input type="text" placeholder="MM/AA">
-            <input type="text" placeholder="CVV">
-        </div>
-        <div class="pago-transferencia">
-            <p>Cuenta: 123456789</p>
-            <p>Banco Ejemplo</p>
-        </div>
-        <button type="submit">Pagar</button>
-    </form>
-    <footer>
-        Dirección: Av. Ficticia #123, Ciudad Ejemplo
-    </footer>
+<body class="payment-page">
+<nav class="topnav">
+  <div class="nav-left"><img class="logo" src="https://i.imgur.com/xdIfKqJ.png" alt="Cherry Boss logo"></div>
+  <div class="nav-right">
+    <a href="index.html">Inicio</a>
+    <a href="menu.html">Menú</a>
+    <a href="pago.html">Pago</a>
+    <a href="sobre.html">Sobre Nosotros</a>
+  </div>
+</nav>
+
+<main class="section">
+  <h1 class="section-title">Pago</h1>
+
+  <form id="checkout" class="checkout-form" onsubmit="handleSubmit(event)">
+    <label>Nombre completo / Empresa (para la factura)
+      <input type="text" name="buyer" required placeholder="Nombre o empresa" />
+    </label>
+
+    <label>Dirección de entrega
+      <input type="text" name="address" required placeholder="Dirección completa" />
+    </label>
+
+    <label>Cantidad de porciones
+      <input id="qty" type="number" name="quantity" min="1" max="100" value="1" />
+    </label>
+
+    <fieldset class="payment-methods">
+      <legend>Método de pago</legend>
+      <label><input type="radio" name="method" value="card" checked> Tarjeta</label>
+      <label><input type="radio" name="method" value="transfer"> Transferencia</label>
+      <label><input type="radio" name="method" value="cod"> Pago contra entrega</label>
+    </fieldset>
+
+    <div id="card-fields" class="card-fields">
+      <label>Número de tarjeta<input name="cardnumber" type="text" maxlength="16" placeholder="1234123412341234" /></label>
+      <label>MM/AA<input name="expiry" type="text" placeholder="MM/AA" /></label>
+      <label>CVV<input name="cvv" type="text" maxlength="4" placeholder="123" /></label>
+    </div>
+
+    <div id="transfer-info" class="transfer-info hidden">
+      <h3>Transferencia bancaria (simulada) — Cherry Boss</h3>
+      <ul>
+        <li><strong>Banco Popular</strong> — Cuenta corriente: <code>001-234567-01</code></li>
+        <li><strong>BanReservas</strong> — Cuenta de ahorros: <code>010-987654-00</code></li>
+        <li><strong>BHD León</strong> — Cuenta corriente: <code>060-555444-22</code></li>
+      </ul>
+      <p>Por favor, tras realizar la transferencia, sube o captura la referencia en el campo de notas y finaliza.</p>
+      <label>Referencia de pago (opcional)<input name="reflink" type="text" placeholder="Código/Referencia bancaría" /></label>
+    </div>
+
+    <div class="summary">
+      <p>Precio unitario: <strong>RD$400</strong></p>
+      <p>Total: <strong id="total">RD$400</strong></p>
+    </div>
+
+    <label>Notas para entrega<textarea name="note" rows="2" placeholder="Instrucciones, puerta, etc."></textarea></label>
+
+    <button type="submit" class="btn-primary">Finalizar pedido</button>
+  </form>
+
+  <div id="confirmation" class="confirmation hidden" role="status" aria-live="polite"></div>
+</main>
+
+<script>
+const price = 400;
+const qty = document.getElementById('qty');
+const total = document.getElementById('total');
+const cardFields = document.getElementById('card-fields');
+const transferInfo = document.getElementById('transfer-info');
+const methods = document.getElementsByName('method');
+const confirmEl = document.getElementById('confirmation');
+
+function updateTotal() {
+  const q = parseInt(qty.value) || 0;
+  total.textContent = 'RD$' + (q * price);
+}
+qty.addEventListener('input', updateTotal);
+updateTotal();
+
+function onMethodChange() {
+  const val = Array.from(methods).find(m => m.checked).value;
+  cardFields.style.display = val === 'card' ? 'block' : 'none';
+  transferInfo.style.display = val === 'transfer' ? 'block' : 'none';
+}
+Array.from(methods).forEach(m => m.addEventListener('change', onMethodChange));
+onMethodChange();
+
+function handleSubmit(e) {
+  e.preventDefault();
+  // fake processing UI
+  confirmEl.classList.remove('hidden');
+  confirmEl.textContent = 'Procesando pedido...';
+  setTimeout(() => {
+    confirmEl.innerHTML = '<strong>Gracias — Pedido recibido.</strong><br/>Un email de confirmación (simulado) ha sido enviado.';
+    // reset minimal fields
+    // document.getElementById('checkout').reset();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 1200);
+}
+</script>
+
+<footer class="site-footer">
+  <div>Cherry Boss — Fábrica / Oficina</div>
+  <div>Dirección: Calle Flan 123, Parque Industrial, Santo Domingo, RD</div>
+</footer>
+
 </body>
 </html>
